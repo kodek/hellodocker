@@ -1,0 +1,20 @@
+language: go
+
+go:
+  - 1.10.3
+
+matrix:
+  fast_finish: true
+
+notifications:
+  email: false
+
+before_install:
+  - go get github.com/golang/lint/golint
+
+script:
+  - golint
+  - go test
+
+after_success:
+  - ./docker_hub_trigger.sh
